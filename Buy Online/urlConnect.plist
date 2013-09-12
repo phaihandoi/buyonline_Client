@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>getProductsFromUser</key>
+	<string>products/get_products_user.php</string>
+	<key>getInfomationUser</key>
+	<string>users/get_infomation_user.php</string>
+	<key>getListProducts</key>
+	<string>list_product_type/get_list_type_products.php</string>
+	<key>getProducts</key>
+	<string>products/get_products.php</string>
+	<key>getProvinces</key>
+	<string>provinces/get_provinces.php</string>
+</dict>
+</plist>
