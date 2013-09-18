@@ -1,0 +1,43 @@
+PODS:
+  - JSONKit (1.5pre)
+  - libwebp (0.3.0-rc7):
+    - libwebp/dec
+    - libwebp/dsp
+    - libwebp/utils
+    - libwebp/webp
+  - libwebp/dec (0.3.0-rc7)
+  - libwebp/dsp (0.3.0-rc7)
+  - libwebp/utils (0.3.0-rc7)
+  - libwebp/webp (0.3.0-rc7)
+  - NMPaginator (1.0.0)
+  - Reachability (3.0.0)
+  - SDWebImage (3.4):
+    - libwebp
+    - SDWebImage/MapKit
+  - SDWebImage/MapKit (3.4):
+    - libwebp
+  - SVProgressHUD (0.9)
+  - SWRevealViewController (1.0.5)
+  - UIActivityIndicator-for-SDWebImage (1.0.0):
+    - SDWebImage (~> 3.2)
+
+DEPENDENCIES:
+  - JSONKit (~> 1.4)
+  - NMPaginator (~> 1.0.0)
+  - Reachability (~> 3.0.0)
+  - SDWebImage
+  - SVProgressHUD
+  - SWRevealViewController
+  - UIActivityIndicator-for-SDWebImage
+
+SPEC CHECKSUMS:
+  JSONKit: 409734ab3407fce90ef7eaa95d7168f38d9a6601
+  libwebp: 40517fa1fd3716eded73b4696c45fc0b66e4b414
+  NMPaginator: 01e7f436e657730d3ffefa66dc6ce9f41bdf42ea
+  Reachability: 500bd76bf6cd8ff2c6fb715fc5f44ef6e4c024f2
+  SDWebImage: f13f791e411c632489824aa7f129e230b52bf5c4
+  SVProgressHUD: 03d4845ec8e64591726428a08236c6a5489d45f8
+  SWRevealViewController: c1698d78b22191af3cd23df4144c3e17e253bb78
+  UIActivityIndicator-for-SDWebImage: c5e8f6208e302b94bc50505dd24c78f34af8a749
+
+COCOAPODS: 0.24.0

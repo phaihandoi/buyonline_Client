@@ -3,6 +3,7 @@
 //
 
 #import <Availability.h>
+#import "UIColor+Hecxa.h"
 #define BASE_URL @"http://192.168.1.200:8888/buy_online/ios/"
 #define URL_IMAGE @"http://192.168.1.200:8888/buy_online/web/user/uploads/images/"
 #ifndef __IPHONE_3_0

@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3394" systemVersion="12E55" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Page" representedClassName="Page" syncable="YES">
-        <attribute name="currentPageMainView" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="pageDisplay" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Products" syncable="YES">
+        <attribute name="date_post_product" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descript" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="flag_bookmark" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" minValueString="1" maxValueString="9999999" defaultValueString="1" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 32" minValueString="1" maxValueString="10000" defaultValueString="1" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="product_type_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 32" minValueString="1" maxValueString="99999" defaultValueString="1" syncable="YES"/>
+    </entity>
+    <entity name="Province" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="position" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Page" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Products" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Province" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

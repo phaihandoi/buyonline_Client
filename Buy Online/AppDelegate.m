@@ -12,22 +12,41 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    UIImage *navBackgroundImage = [UIImage imageNamed:@"navbar_bg.png"];
-    [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
     
+    
+    [[NSNotificationCenter defaultCenter] addObserver: self selector: @selector(reachabilityChanged:) name: kReachabilityChangedNotification object: nil];
+    
+    //Change the host name here to change the server your monitoring
+    //remoteHostLabel.text = [NSString stringWithFormat: @"Remote Host: %@", @"www.apple.com"];
+	_hostReach = [Reachability reachabilityWithHostname: @"www.google.com"];
+	[_hostReach startNotifier];
+	[self updateInterfaceWithReachability: _hostReach];
+	
+    _internetReach = [Reachability reachabilityForInternetConnection ];
+	[_internetReach startNotifier];
+	[self updateInterfaceWithReachability: _internetReach];
+    
+    _wifiReach = [Reachability reachabilityForLocalWiFi];
+	[_wifiReach startNotifier];
+	[self updateInterfaceWithReachability: _wifiReach];
+    
+    UIImage *navBackgroundImage = [UIImage imageNamed:@"nav"];
+    [[UINavigationBar appearance] setBackgroundImage:navBackgroundImage forBarMetrics:UIBarMetricsDefault];
+    [[UIApplication sharedApplication]
+     setStatusBarStyle:UIStatusBarStyleDefault animated:NO];
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                           [UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], UITextAttributeTextColor,
-                                                           [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],UITextAttributeTextShadowColor,
-                                                           [NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
-                                                           UITextAttributeTextShadowOffset,
-                                                           [UIFont fontWithName:@"HelveticaNeue-CondensedBlack" size:19.0], UITextAttributeFont, nil]];
+                                                           //[UIColor colorWithRed:245.0/255.0 green:245.0/255.0 blue:245.0/255.0 alpha:1.0], UITextAttributeTextColor,
+                                                           //[UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],UITextAttributeTextShadowColor,
+                                                           //[NSValue valueWithUIOffset:UIOffsetMake(0, 1)],
+                                                           //UITextAttributeTextShadowOffset,
+                                                           [UIFont fontWithName:@"Roboto-Bold" size:19.0], UITextAttributeFont, nil]];
     // Change the appearance of back button
-    UIImage *backButtonImage = [[UIImage imageNamed:@"button_back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+    //UIImage *backButtonImage = [[UIImage imageNamed:@"button_back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+    //[[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     
     // Change the appearance of other navigation button
-    UIImage *barButtonImage = [[UIImage imageNamed:@"button_normal.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
-    [[UIBarButtonItem appearance] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+   // UIImage *barButtonImage = [[UIImage imageNamed:@"button_normal.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 6, 0, 6)];
+    //[[UIBarButtonItem appearance] setBackgroundImage:barButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
     return YES;
 }
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -55,5 +74,56 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+- (void) configureReachability: (Reachability*) curReach
+{
+    NetworkStatus netStatus = [curReach currentReachabilityStatus];
+    NSString* statusString= @"";
+    switch (netStatus)
+    {
+        case NotReachable:
+        {
+            statusString = @"Access Not Available";
+            break;
+        }
+            
+        case ReachableViaWWAN:
+        {
+            statusString = @"Reachable WWAN";
+            
+            break;
+        }
+        case ReachableViaWiFi:
+        {
+            statusString= @"Reachable WiFi";
+            
+            break;
+        }
+    }
+    NSLog(@"%@",statusString);
+}
+
+- (void) updateInterfaceWithReachability: (Reachability*) curReach
+{
+    if(curReach == _hostReach)
+	{
+		[self configureReachability: curReach];
+        //NetworkStatus netStatus = [curReach currentReachabilityStatus];
+    }
+	if(curReach == _internetReach)
+	{
+		[self configureReachability: curReach];
+	}
+	if(curReach == _wifiReach)
+	{
+		[self configureReachability: curReach];
+	}
+}
+
+- (void) reachabilityChanged: (NSNotification* )note
+{
+	Reachability* curReach = [note object];
+	NSParameterAssert([curReach isKindOfClass: [Reachability class]]);
+	[self updateInterfaceWithReachability: curReach];
 }
 @end

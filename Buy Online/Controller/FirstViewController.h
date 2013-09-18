@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SWRevealViewController.h"
+#import <SWRevealViewController/SWRevealViewController.h>
 @interface FirstViewController : UIViewController<UIPickerViewDelegate, UIPickerViewDataSource, SWRevealViewControllerDelegate>
 @property(nonatomic, strong) SWRevealViewController *viewController1;
 @end
